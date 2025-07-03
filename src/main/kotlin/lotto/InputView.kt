@@ -1,18 +1,16 @@
 package lotto
 
-import java.lang.IllegalArgumentException
-
 object InputView {
     fun inputPurchaseAmount(): Int {
         while (true) {
             try {
                 println("Please enter the purchase amount.")
                 val amount = readln().trim().toInt()
-                require(amount >= LottoConstants.TICKET_PRICE && amount % LottoConstants.TICKET_PRICE == 0) { "Invalid amount, must be divisible by $LottoConstants.TICKET_PRICE" }
+                require(amount >= Const.PRICE && amount % Const.PRICE == 0) { Const.AMOUNT_ERROR }
                 return amount
-            } catch (e: NumberFormatException) {
+            } catch (_: NumberFormatException) {
                 println("Amount must be a number")
-            } catch (e: IllegalArgumentException) {
+            } catch (_: IllegalArgumentException) {
                 println("Enter a valid amount")
             }
         }
@@ -24,13 +22,13 @@ object InputView {
             try {
                 val input = readln().trim()
                 val numbers = input.split(",").map { it.trim().toInt() }
-                require(numbers.size == LottoConstants.NUMBER_COUNT) { "Numbers have to be distinct" }
-                require(numbers.toSet().size == LottoConstants.NUMBER_COUNT) { "Number must be unique" }
-                require(numbers.all { it in 1..45 }) { "Numbers should be between 1 to 45" }
+                require(numbers.size == Const.NUMBER_COUNT) { Const.DISTINCT_NUM }
+                require(numbers.toSet().size == Const.NUMBER_COUNT) { Const.DISTINCT_NUM }
+                require(numbers.all { it in Const.MIN..Const.MAX }) { Const.NUM_RANGE }
                 return numbers
-            } catch (e: NumberFormatException) {
+            } catch (_: NumberFormatException) {
                 println("Winning number should  be a numeric")
-            } catch (e: IllegalArgumentException) {
+            } catch (_: IllegalArgumentException) {
                 println("Enter a valid winning number")
             }
         }
@@ -41,12 +39,12 @@ object InputView {
             try {
                 println("Please enter the bonus number.")
                 val bonusNumber = readln().trim().toInt()
-                require(bonusNumber in 1..45) {"Numbers should be between 1 to 45"}
-                require(bonusNumber !in numberList){"Number  should not be in winning list"}
+                require(bonusNumber in Const.MIN..Const.MAX) { Const.NUM_RANGE }
+                require(bonusNumber !in numberList) { Const.DISTINCT_NUM }
                 return bonusNumber
-            } catch (e: NumberFormatException) {
+            } catch (_: NumberFormatException) {
                 println("bonus Number must be a numeric")
-            } catch (e: IllegalArgumentException) {
+            } catch (_: IllegalArgumentException) {
                 println("Enter a valid bonus number")
             }
         }

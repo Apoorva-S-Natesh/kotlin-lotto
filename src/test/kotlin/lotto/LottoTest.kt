@@ -1,17 +1,9 @@
 package lotto
 
 import org.junit.jupiter.api.Test
-//import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.assertThrows
 
 class LottoTest {
-//
-//    @Test
-//    fun `Amount creates a Lotto instance`() {
-//        val lotto = Lotto(2000)
-//        assertNotNull(lotto)
-//    }
-
     @Test
     fun `Amount is greater than 1000`() {
         assertThrows<IllegalArgumentException> {

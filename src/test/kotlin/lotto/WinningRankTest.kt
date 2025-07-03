@@ -1,7 +1,6 @@
 package lotto
+
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertDoesNotThrow
-import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertEquals
 
 class WinningRankTest {

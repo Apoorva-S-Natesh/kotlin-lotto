@@ -1,5 +1,5 @@
 package lotto
 
-    fun main() {
-        LottoMachine.start()
-    }
+fun main() {
+    LottoMachine.start()
+}
