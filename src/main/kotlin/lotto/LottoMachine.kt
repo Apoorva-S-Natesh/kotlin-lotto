@@ -10,7 +10,7 @@ object LottoMachine {
         OutputView.displayResults(winStats, calculateReturnRate(amount))
     }
 
-    fun generateTickets(amount: Int): List<Ticket> {
+    private fun generateTickets(amount: Int): List<Ticket> {
         val ticketCount = amount / Constants.TICKET_PRICE
         val ticketsList = mutableListOf<Ticket>()
         repeat(ticketCount) {
@@ -62,10 +62,10 @@ object LottoMachine {
     }
 
     private fun calculateReturnRate(amount: Int): String {
-        return (calculateReturnRate(amount, winStats.entries.sumOf { (rank, count) -> rank.prize * count }))
+        return (calculateTotalReturn(amount, winStats.entries.sumOf { (rank, count) -> rank.prize * count }))
     }
 
-    fun calculateReturnRate(
+    private fun calculateTotalReturn(
         amount: Int,
         totalReturn: Int,
     ): String {
