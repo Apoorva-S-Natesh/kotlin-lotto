@@ -6,7 +6,9 @@ object InputView {
             try {
                 println("Please enter the purchase amount.")
                 val amount = readln().trim().toInt()
-                require(amount >= Const.PRICE && amount % Const.PRICE == 0) { Const.AMOUNT_ERROR }
+                require(amount >= Constants.TICKET_PRICE && amount % Constants.TICKET_PRICE == 0) {
+                    "Invalid amount, must be divisible by ${Constants.TICKET_PRICE}"
+                }
                 return amount
             } catch (_: NumberFormatException) {
                 println("Amount must be a number")
@@ -22,9 +24,9 @@ object InputView {
             try {
                 val input = readln().trim()
                 val numbers = input.split(",").map { it.trim().toInt() }
-                require(numbers.size == Const.NUMBER_COUNT) { Const.DISTINCT_NUM }
-                require(numbers.toSet().size == Const.NUMBER_COUNT) { Const.DISTINCT_NUM }
-                require(numbers.all { it in Const.MIN..Const.MAX }) { Const.NUM_RANGE }
+                require(numbers.size == Constants.NUMBER_COUNT) { "Numbers have to be distinct" }
+                require(numbers.toSet().size == Constants.NUMBER_COUNT) { "Numbers have to be distinct" }
+                require(numbers.all { it in Constants.MINIMUM_NUMBER..Constants.MAXIMUM_NUMBER }) { "Numbers have to be distinct" }
                 return numbers
             } catch (_: NumberFormatException) {
                 println("Winning number should  be a numeric")
@@ -39,8 +41,10 @@ object InputView {
             try {
                 println("Please enter the bonus number.")
                 val bonusNumber = readln().trim().toInt()
-                require(bonusNumber in Const.MIN..Const.MAX) { Const.NUM_RANGE }
-                require(bonusNumber !in numberList) { Const.DISTINCT_NUM }
+                require(bonusNumber in Constants.MINIMUM_NUMBER..Constants.MAXIMUM_NUMBER) {
+                    "Numbers should be between ${Constants.MINIMUM_NUMBER} and ${Constants.MAXIMUM_NUMBER}"
+                }
+                require(bonusNumber !in numberList) { "Numbers have to be distinct" }
                 return bonusNumber
             } catch (_: NumberFormatException) {
                 println("bonus Number must be a numeric")

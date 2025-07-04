@@ -9,7 +9,7 @@ class WinningNumbersTest {
     fun `winning numbers in range 1 to 45`() {
         assertDoesNotThrow {
             val ticket = WinningTicket(listOf(10, 2, 3, 4, 5, 6))
-            require(ticket.winningNumbers.all { it in Const.MIN..Const.MAX })
+            require(ticket.winningNumbers.all { it in Constants.MINIMUM_NUMBER..Constants.MAXIMUM_NUMBER })
         }
     }
 
@@ -17,7 +17,7 @@ class WinningNumbersTest {
     fun `winning numbers not in range 1 to 45`() {
         assertThrows<IllegalArgumentException> {
             val ticket = WinningTicket(listOf(10, 2, 3, 54, 5, 6))
-            require(ticket.winningNumbers.all { it in Const.MIN..Const.MAX })
+            require(ticket.winningNumbers.all { it in Constants.MINIMUM_NUMBER..Constants.MAXIMUM_NUMBER })
         }
     }
 
@@ -25,7 +25,7 @@ class WinningNumbersTest {
     fun `winning numbers are unique`() {
         assertDoesNotThrow {
             val ticket = WinningTicket(listOf(10, 2, 34, 45, 5, 13))
-            require(ticket.winningNumbers.toSet().size == Const.NUMBER_COUNT)
+            require(ticket.winningNumbers.toSet().size == Constants.NUMBER_COUNT)
         }
     }
 
@@ -33,7 +33,7 @@ class WinningNumbersTest {
     fun `winning numbers are not unique`() {
         assertThrows<IllegalArgumentException> {
             val ticket = WinningTicket(listOf(10, 2, 34, 5, 2, 13))
-            require(ticket.winningNumbers.toSet().size == Const.NUMBER_COUNT)
+            require(ticket.winningNumbers.toSet().size == Constants.NUMBER_COUNT)
         }
     }
 
@@ -41,7 +41,7 @@ class WinningNumbersTest {
     fun `size winning numbers are not 6`() {
         assertThrows<IllegalArgumentException> {
             val ticket = WinningTicket(listOf(10, 2, 34, 5, 2))
-            require(ticket.winningNumbers.size == Const.NUMBER_COUNT)
+            require(ticket.winningNumbers.size == Constants.NUMBER_COUNT)
         }
     }
 
@@ -49,7 +49,7 @@ class WinningNumbersTest {
     fun `size winning numbers are  6`() {
         assertDoesNotThrow {
             val ticket = WinningTicket(listOf(10, 2, 34, 45, 5, 13))
-            require(ticket.winningNumbers.size == Const.NUMBER_COUNT)
+            require(ticket.winningNumbers.size == Constants.NUMBER_COUNT)
         }
     }
 
@@ -57,7 +57,7 @@ class WinningNumbersTest {
     fun `bonus number is in the range 1 to 45`() {
         assertDoesNotThrow {
             val ticket = WinningTicket(listOf(1, 2, 34, 45, 5, 13), 11)
-            require(ticket.bonusNumber in Const.MIN..Const.MAX)
+            require(ticket.bonusNumber in Constants.MINIMUM_NUMBER..Constants.MAXIMUM_NUMBER)
         }
     }
 
@@ -65,7 +65,7 @@ class WinningNumbersTest {
     fun `bonus number is not in the range 1 to 45`() {
         assertThrows<IllegalArgumentException> {
             val ticket = WinningTicket(listOf(10, 2, 34, 45, 5, 13), 100)
-            require(ticket.bonusNumber in Const.MIN..Const.MAX)
+            require(ticket.bonusNumber in Constants.MINIMUM_NUMBER..Constants.MAXIMUM_NUMBER)
         }
     }
 

@@ -16,7 +16,7 @@ object OutputView {
         returnRate: String,
     ) {
         val text =
-"""
+            """
     
 Winning Statistics
 ------------------

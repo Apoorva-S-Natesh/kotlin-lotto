@@ -11,7 +11,7 @@ object LottoMachine {
     }
 
     fun generateTickets(amount: Int): List<Ticket> {
-        val ticketCount = amount / Const.PRICE
+        val ticketCount = amount / Constants.TICKET_PRICE
         val ticketsList = mutableListOf<Ticket>()
         repeat(ticketCount) {
             val ticket = Ticket(generateTicketNumbers())
@@ -22,7 +22,7 @@ object LottoMachine {
     }
 
     private fun generateTicketNumbers(): List<Int> {
-        return (Const.MIN..Const.MAX).shuffled().take(Const.NUMBER_COUNT).sorted()
+        return (Constants.MINIMUM_NUMBER..Constants.MAXIMUM_NUMBER).shuffled().take(Constants.NUMBER_COUNT).sorted()
     }
 
     private val winStats =
