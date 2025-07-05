@@ -16,15 +16,14 @@ object InputView {
         }
     }
 
-    fun inputWinningNumbers(): List<Int> {
+    fun inputWinningNumbers(): List<LottoNumber> {
         println("\nPlease enter last week’s winning numbers.")
         while (true) {
             try {
                 val input = readln().trim()
-                val numbers = input.split(",").map { it.trim().toInt() }
+                val numbers = input.split(",").map { LottoNumber.from(it.trim().toInt()) }
                 require(numbers.size == Constants.NUMBER_COUNT) { "Numbers have to be distinct" }
                 require(numbers.toSet().size == Constants.NUMBER_COUNT) { "Numbers have to be distinct" }
-                require(numbers.all { it in Constants.MINIMUM_NUMBER..Constants.MAXIMUM_NUMBER }) { "Numbers have to be distinct" }
                 return numbers
             } catch (_: NumberFormatException) {
                 println("Winning number should  be a numeric")
@@ -34,15 +33,12 @@ object InputView {
         }
     }
 
-    fun inputBonusNumber(numberList: List<Int>): Int {
+    fun inputBonusNumber(numberList: List<LottoNumber>): LottoNumber {
         while (true) {
             try {
                 println("Please enter the bonus number.")
-                val bonusNumber = readln().trim().toInt()
-                require(bonusNumber in Constants.MINIMUM_NUMBER..Constants.MAXIMUM_NUMBER) {
-                    "Numbers should be between ${Constants.MINIMUM_NUMBER} and ${Constants.MAXIMUM_NUMBER}"
-                }
-                require(bonusNumber !in numberList) { "Numbers have to be distinct" }
+                val bonusNumber = LottoNumber.from(readln().trim().toInt())
+                require(bonusNumber !in numberList) { "Bonus number should be different from winning numbers" }
                 return bonusNumber
             } catch (_: NumberFormatException) {
                 println("bonus Number must be a numeric")

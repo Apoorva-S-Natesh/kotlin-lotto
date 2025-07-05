@@ -21,8 +21,8 @@ object LottoMachine {
         return ticketsList
     }
 
-    private fun generateTicketNumbers(): List<Int> {
-        return (Constants.MINIMUM_NUMBER..Constants.MAXIMUM_NUMBER).shuffled().take(Constants.NUMBER_COUNT).sorted()
+    private fun generateTicketNumbers(): List<LottoNumber> {
+        return (LottoNumber.allNumbers()).shuffled().take(Constants.NUMBER_COUNT).sortedBy { it.toInt() }
     }
 
     private val winStats =
@@ -37,8 +37,8 @@ object LottoMachine {
 
     private fun calculateStats(
         tickets: List<Ticket>,
-        winningNumbers: List<Int>,
-        bonusNumber: Int,
+        winningNumbers: List<LottoNumber>,
+        bonusNumber: LottoNumber,
     ) {
         for (ticket in tickets) {
             val match = checkMatch(ticket, winningNumbers)
@@ -56,7 +56,7 @@ object LottoMachine {
 
     private fun checkMatch(
         ticket: Ticket,
-        winningNumbers: List<Int>,
+        winningNumbers: List<LottoNumber>,
     ): Int {
         return (ticket.numbers.count { winningNumbers.contains(it) })
     }
