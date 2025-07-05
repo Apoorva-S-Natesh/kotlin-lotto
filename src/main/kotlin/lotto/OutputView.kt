@@ -1,5 +1,7 @@
 package lotto
 
+import java.text.NumberFormat
+
 object OutputView {
     fun displayTickets(
         ticketCount: Int,
@@ -31,6 +33,6 @@ object OutputView {
     }
 
     private fun formatNumber(prizeAmount: Int): String {
-        return prizeAmount.toString().reversed().chunked(3).joinToString(",").reversed()
+        return NumberFormat.getNumberInstance().format(prizeAmount)
     }
 }
