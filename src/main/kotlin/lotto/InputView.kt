@@ -6,9 +6,7 @@ object InputView {
             try {
                 println("Please enter the purchase amount.")
                 val amount = readln().trim().toInt()
-                require(amount >= Constants.TICKET_PRICE && amount % Constants.TICKET_PRICE == 0) {
-                    "Invalid amount, must be divisible by ${Constants.TICKET_PRICE}"
-                }
+                AmountValidator.validate(amount)
                 return amount
             } catch (_: NumberFormatException) {
                 println("Amount must be a number")
