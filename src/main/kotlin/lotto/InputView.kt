@@ -1,0 +1,50 @@
+package lotto
+
+object InputView {
+    fun inputPurchaseAmount(): Int {
+        while (true) {
+            try {
+                println("Please enter the purchase amount.")
+                val amount = readln().trim().toInt()
+                AmountValidator.validate(amount)
+                return amount
+            } catch (_: NumberFormatException) {
+                println("Amount must be a number")
+            } catch (_: IllegalArgumentException) {
+                println("Enter a valid amount")
+            }
+        }
+    }
+
+    fun inputWinningNumbers(): List<LottoNumber> {
+        println("\nPlease enter last week’s winning numbers.")
+        while (true) {
+            try {
+                val input = readln().trim()
+                val numbers = input.split(",").map { LottoNumber.from(it.trim().toInt()) }
+                require(numbers.size == Constants.NUMBER_COUNT) { "Numbers have to be distinct" }
+                require(numbers.toSet().size == Constants.NUMBER_COUNT) { "Numbers have to be distinct" }
+                return numbers
+            } catch (_: NumberFormatException) {
+                println("Winning number should  be a numeric")
+            } catch (_: IllegalArgumentException) {
+                println("Enter a valid winning number")
+            }
+        }
+    }
+
+    fun inputBonusNumber(numberList: List<LottoNumber>): LottoNumber {
+        while (true) {
+            try {
+                println("Please enter the bonus number.")
+                val bonusNumber = LottoNumber.from(readln().trim().toInt())
+                require(bonusNumber !in numberList) { "Bonus number should be different from winning numbers" }
+                return bonusNumber
+            } catch (_: NumberFormatException) {
+                println("bonus Number must be a numeric")
+            } catch (_: IllegalArgumentException) {
+                println("Enter a valid bonus number")
+            }
+        }
+    }
+}
