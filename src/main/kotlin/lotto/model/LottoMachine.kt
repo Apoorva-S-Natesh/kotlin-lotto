@@ -3,10 +3,8 @@ package lotto.model
 import lotto.service.AmountValidator
 import lotto.service.Constants
 import lotto.view.InputView
-import lotto.model.ManualTicket
 import lotto.view.OutputView
 import lotto.service.Rank
-import lotto.model.Ticket
 
 object LottoMachine {
     fun start() {
