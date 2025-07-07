@@ -3,6 +3,7 @@ package lotto
 object LottoMachine {
     fun start() {
         val amount = getAmountInput()
+        val manualTicketCount = getManualTicketCount(amount)
         val ticketList = generateTickets(amount)
         val winningNumbers = InputView.inputWinningNumbers()
         val bonusNumber = InputView.inputBonusNumber(winningNumbers)
@@ -19,6 +20,18 @@ object LottoMachine {
             }
             catch (_: IllegalArgumentException) {
                 println("Enter a valid amount to buy tickets")
+            }
+        }
+    }
+
+    private fun getManualTicketCount(amount: Int): Int {
+        while (true) {
+            try {
+                val manualTicketCount = InputView.inputManualTicketCount()
+                ManualTicketValidator.checkTicketCount(manualTicketCount, amount)
+                return manualTicketCount
+            } catch (_: IllegalArgumentException) {
+                println("Enter a valid manual ticket count")
             }
         }
     }

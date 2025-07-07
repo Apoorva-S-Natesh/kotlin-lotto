@@ -46,4 +46,18 @@ object InputView {
             }
         }
     }
+
+    fun inputManualTicketCount(): Int {
+        while (true) {
+            try{
+                println("\nEnter the number of manual tickets to purchase.")
+                val manualTicketCount = readln().trim().toInt()
+                return manualTicketCount
+            } catch (_: NumberFormatException) {
+                println("Number of manual tickets should be numeric")
+            } catch(_: IllegalArgumentException) {
+                println("Enter a valid number")
+            }
+        }
+    }
 }
