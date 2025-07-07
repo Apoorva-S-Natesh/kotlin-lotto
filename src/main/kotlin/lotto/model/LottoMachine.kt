@@ -69,7 +69,7 @@ object LottoMachine {
     }
 
     private fun generateTicketNumbers(): List<LottoNumber> {
-        return LottoNumber.Companion.takeRandom(Constants.NUMBER_COUNT)
+        return LottoNumber.takeRandom(Constants.NUMBER_COUNT)
     }
 
     private val winStats =
@@ -93,10 +93,10 @@ object LottoMachine {
                 winStats[Rank.SECOND] = winStats[Rank.SECOND]!! + 1
             } else {
                 winStats[
-                    Rank.Companion.valueOf(
+                    Rank.valueOf(
                         match, false,
                     ),
-                ] = winStats[Rank.Companion.valueOf(match, false)]!! + 1
+                ] = winStats[Rank.valueOf(match, false)]!! + 1
             }
         }
     }
