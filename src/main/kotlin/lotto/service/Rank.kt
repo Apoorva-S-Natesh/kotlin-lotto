@@ -1,4 +1,4 @@
-package lotto
+package lotto.service
 
 enum class Rank(val prize: Int) {
     FIRST(2_000_000_000),

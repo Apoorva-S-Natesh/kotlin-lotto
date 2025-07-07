@@ -1,4 +1,6 @@
-package lotto
+package lotto.model
+
+import lotto.service.Constants
 
 class Ticket(val numbers: List<LottoNumber>) {
     init {

@@ -1,5 +1,7 @@
-package lotto
+package lotto.view
 
+import lotto.service.Rank
+import lotto.model.Ticket
 import java.text.NumberFormat
 
 object OutputView {

@@ -1,4 +1,6 @@
-package lotto
+package lotto.model
+
+import lotto.service.Constants
 
 object ManualTicket {
     fun checkTicketCount(

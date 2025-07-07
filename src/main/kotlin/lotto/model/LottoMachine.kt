@@ -1,4 +1,12 @@
-package lotto
+package lotto.model
+
+import lotto.service.AmountValidator
+import lotto.service.Constants
+import lotto.view.InputView
+import lotto.model.ManualTicket
+import lotto.view.OutputView
+import lotto.service.Rank
+import lotto.model.Ticket
 
 object LottoMachine {
     fun start() {
@@ -63,7 +71,7 @@ object LottoMachine {
     }
 
     private fun generateTicketNumbers(): List<LottoNumber> {
-        return LottoNumber.takeRandom(Constants.NUMBER_COUNT)
+        return LottoNumber.Companion.takeRandom(Constants.NUMBER_COUNT)
     }
 
     private val winStats =
@@ -87,10 +95,10 @@ object LottoMachine {
                 winStats[Rank.SECOND] = winStats[Rank.SECOND]!! + 1
             } else {
                 winStats[
-                    Rank.valueOf(
+                    Rank.Companion.valueOf(
                         match, false,
                     ),
-                ] = winStats[Rank.valueOf(match, false)]!! + 1
+                ] = winStats[Rank.Companion.valueOf(match, false)]!! + 1
             }
         }
     }

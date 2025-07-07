@@ -1,4 +1,7 @@
-package lotto
+package lotto.view
+
+import lotto.service.Constants
+import lotto.model.LottoNumber
 
 object InputView {
     fun inputPurchaseAmount(): Int {
@@ -20,7 +23,7 @@ object InputView {
         while (true) {
             try {
                 val input = readln().trim()
-                val numbers = input.split(",").map { LottoNumber.from(it.trim().toInt()) }
+                val numbers = input.split(",").map { LottoNumber.Companion.from(it.trim().toInt()) }
                 require(numbers.size == Constants.NUMBER_COUNT) { "Numbers have to be distinct" }
                 require(numbers.toSet().size == Constants.NUMBER_COUNT) { "Numbers have to be distinct" }
                 return numbers
@@ -36,7 +39,7 @@ object InputView {
         while (true) {
             try {
                 println("Please enter the bonus number.")
-                val bonusNumber = LottoNumber.from(readln().trim().toInt())
+                val bonusNumber = LottoNumber.Companion.from(readln().trim().toInt())
                 require(bonusNumber !in numberList) { "Bonus number should be different from winning numbers" }
                 return bonusNumber
             } catch (_: NumberFormatException) {

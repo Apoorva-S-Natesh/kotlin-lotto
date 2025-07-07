@@ -1,4 +1,7 @@
-package lotto
+package lotto.model
+
+import lotto.service.Constants
+import lotto.model.Ticket
 
 class WinningTicket(val winningNumbers: Ticket, val bonusNumber: LottoNumber) {
     init {

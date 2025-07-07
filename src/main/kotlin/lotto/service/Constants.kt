@@ -1,4 +1,4 @@
-package lotto
+package lotto.service
 
 object Constants {
     const val TICKET_PRICE = 1000

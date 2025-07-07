@@ -1,4 +1,6 @@
-package lotto
+package lotto.service
+
+import lotto.service.Constants
 
 object AmountValidator {
     fun validate(amount: Int) {
