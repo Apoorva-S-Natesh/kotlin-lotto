@@ -49,15 +49,29 @@ object InputView {
 
     fun inputManualTicketCount(): Int {
         while (true) {
-            try{
+            try {
                 println("\nEnter the number of manual tickets to purchase.")
                 val manualTicketCount = readln().trim().toInt()
                 return manualTicketCount
             } catch (_: NumberFormatException) {
                 println("Number of manual tickets should be numeric")
-            } catch(_: IllegalArgumentException) {
+            } catch (_: IllegalArgumentException) {
                 println("Enter a valid number")
             }
+        }
+    }
+
+    fun inputManualTicketNumbers(manualTicketCount: Int): List<String> {
+        while (true) {
+            if (manualTicketCount != 0) {
+                println("\nEnter the numbers for manual tickets.")
+            }
+            val manualTicketList = mutableListOf<String>()
+            repeat(manualTicketCount) {
+                val manualTicket = readln()
+                manualTicketList.add(manualTicket)
+            }
+            return manualTicketList
         }
     }
 }

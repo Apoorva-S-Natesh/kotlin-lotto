@@ -13,7 +13,7 @@ class LottoNumber private constructor(private val value: Int) {
 
         fun allNumbers(): List<LottoNumber> = NUMBERS.values.toList()
 
-        fun takeRandom(count: Int):List<LottoNumber> {
+        fun takeRandom(count: Int): List<LottoNumber> {
             return (allNumbers()).shuffled().take(count).sortedBy { it.toInt() }
         }
     }

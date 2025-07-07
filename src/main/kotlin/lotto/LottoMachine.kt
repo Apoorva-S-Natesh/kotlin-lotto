@@ -4,21 +4,21 @@ object LottoMachine {
     fun start() {
         val amount = getAmountInput()
         val manualTicketCount = getManualTicketCount(amount)
-        val ticketList = generateTickets(amount)
+        val manualTickets = getManualTickets(manualTicketCount)
+        val automaticTickets = generateAutomaticTickets(amount, manualTicketCount)
         val winningNumbers = InputView.inputWinningNumbers()
         val bonusNumber = InputView.inputBonusNumber(winningNumbers)
-        calculateStats(ticketList, winningNumbers, bonusNumber)
+        calculateStats(automaticTickets + manualTickets, winningNumbers, bonusNumber)
         OutputView.displayResults(winStats, calculateReturnRate(amount))
     }
 
-    private fun getAmountInput() : Int {
+    private fun getAmountInput(): Int {
         while (true) {
             try {
                 val amount = InputView.inputPurchaseAmount()
                 AmountValidator.validate(amount)
                 return amount
-            }
-            catch (_: IllegalArgumentException) {
+            } catch (_: IllegalArgumentException) {
                 println("Enter a valid amount to buy tickets")
             }
         }
@@ -28,7 +28,7 @@ object LottoMachine {
         while (true) {
             try {
                 val manualTicketCount = InputView.inputManualTicketCount()
-                ManualTicketValidator.checkTicketCount(manualTicketCount, amount)
+                ManualTicket.checkTicketCount(manualTicketCount, amount)
                 return manualTicketCount
             } catch (_: IllegalArgumentException) {
                 println("Enter a valid manual ticket count")
@@ -36,14 +36,29 @@ object LottoMachine {
         }
     }
 
-    private fun generateTickets(amount: Int): List<Ticket> {
-        val ticketCount = amount / Constants.TICKET_PRICE
+    private fun getManualTickets(manualTicketCount: Int): List<Ticket> {
+        while (true) {
+            try {
+                val manualTicketsString = InputView.inputManualTicketNumbers(manualTicketCount)
+                val manualTickets = ManualTicket.generateManualTickets(manualTicketsString)
+                return manualTickets
+            } catch (_: IllegalArgumentException) {
+                println("Enter valid manual tickets")
+            }
+        }
+    }
+
+    private fun generateAutomaticTickets(
+        amount: Int,
+        manualTicketCount: Int,
+    ): List<Ticket> {
+        val ticketCount = amount / Constants.TICKET_PRICE - manualTicketCount
         val ticketsList = mutableListOf<Ticket>()
         repeat(ticketCount) {
             val ticket = Ticket(generateTicketNumbers())
             ticketsList.add(ticket)
         }
-        OutputView.displayTickets(ticketCount, ticketsList)
+        OutputView.displayTickets(ticketCount, ticketsList, manualTicketCount)
         return ticketsList
     }
 
