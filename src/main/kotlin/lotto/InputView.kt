@@ -6,7 +6,6 @@ object InputView {
             try {
                 println("Please enter the purchase amount.")
                 val amount = readln().trim().toInt()
-                AmountValidator.validate(amount)
                 return amount
             } catch (_: NumberFormatException) {
                 println("Amount must be a number")

@@ -2,12 +2,25 @@ package lotto
 
 object LottoMachine {
     fun start() {
-        val amount = InputView.inputPurchaseAmount()
+        val amount = getAmountInput()
         val ticketList = generateTickets(amount)
         val winningNumbers = InputView.inputWinningNumbers()
         val bonusNumber = InputView.inputBonusNumber(winningNumbers)
         calculateStats(ticketList, winningNumbers, bonusNumber)
         OutputView.displayResults(winStats, calculateReturnRate(amount))
+    }
+
+    private fun getAmountInput() : Int {
+        while (true) {
+            try {
+                val amount = InputView.inputPurchaseAmount()
+                AmountValidator.validate(amount)
+                return amount
+            }
+            catch (_: IllegalArgumentException) {
+                println("Enter a valid amount to buy tickets")
+            }
+        }
     }
 
     private fun generateTickets(amount: Int): List<Ticket> {
