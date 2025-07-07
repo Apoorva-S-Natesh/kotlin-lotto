@@ -40,3 +40,8 @@ OutputView
 Logic
 - [x] Calculate Winning Stats
 - [x] Calculate Return Rate
+
+Manual Ticket
+- [x] number of manual tickets > possible ticket purchase
+- [x] manual tickets 0 or less than possible ticket purchase
+- [x] manual tickets are Tickets (check for being a valid ticket)
