@@ -35,7 +35,7 @@ object LottoMachine {
     }
 
     private fun generateTicketNumbers(): List<LottoNumber> {
-        return (LottoNumber.allNumbers()).shuffled().take(Constants.NUMBER_COUNT).sortedBy { it.toInt() }
+        return LottoNumber.takeRandom(Constants.NUMBER_COUNT)
     }
 
     private val winStats =
