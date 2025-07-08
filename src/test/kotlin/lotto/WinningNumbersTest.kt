@@ -18,7 +18,7 @@ class WinningNumbersTest {
             assertThrows<IllegalArgumentException> {
                 WinningTicket(ticket, LottoNumber.from(2))
             }
-        assertThat("Bonus number should be different from winning numbers").isEqualTo(exception.message)
+        assertThat(exception).hasMessage("Bonus number should be different from winning numbers")
     }
 
     @Test
@@ -28,11 +28,7 @@ class WinningNumbersTest {
             assertThrows<IllegalArgumentException> {
                 WinningTicket(ticket, LottoNumber.from(55))
             }
-        assertThat(
-            "Numbers must be between ${Constants.MINIMUM_NUMBER} and ${Constants.MAXIMUM_NUMBER}",
-        ).isEqualTo(
-            exception.message,
-        )
+        assertThat(exception).hasMessage("Numbers must be between ${Constants.MINIMUM_NUMBER} and ${Constants.MAXIMUM_NUMBER}")
     }
 
     @Test
