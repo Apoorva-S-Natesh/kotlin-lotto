@@ -1,7 +1,7 @@
 package lotto.view
 
-import lotto.service.Constants
 import lotto.model.LottoNumber
+import lotto.service.Constants
 
 object InputView {
     fun inputPurchaseAmount(): Int {
