@@ -13,7 +13,7 @@ class ManualTicketTest {
             assertThrows<IllegalArgumentException> {
                 ManualTicket.checkTicketCount(4, 2200)
             }
-        assertThat(exception).hasMessage(exception.message)
+        assertThat(exception).hasMessage("Manual tickets cannot be more than the possible purchase")
     }
 
     @Test
