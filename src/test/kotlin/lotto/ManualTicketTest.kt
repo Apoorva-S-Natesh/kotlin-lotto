@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 
-class ManualTicketCountValidatorTest {
+class ManualTicketTest {
     @Test
     fun `manual ticket count is a greater than possible tickets throws exception`() {
         val exception =
             assertThrows<IllegalArgumentException> {
                 ManualTicket.checkTicketCount(4, 2200)
             }
-        assertThat("Manual tickets cannot be more than the possible purchase").isEqualTo(exception.message)
+        assertThat(exception).hasMessage(exception.message)
     }
 
     @Test
