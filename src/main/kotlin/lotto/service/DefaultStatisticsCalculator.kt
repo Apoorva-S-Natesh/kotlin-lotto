@@ -22,7 +22,7 @@ class DefaultStatisticsCalculator : StatisticsCalculator {
             } else {
                 Rank.valueOf(match, false)
             }
-            winStats[rank] = winStats[rank]!! + 1
+            winStats.put(rank, winStats.getOrDefault(rank, 0) + 1)
         }
         return winStats
     }
